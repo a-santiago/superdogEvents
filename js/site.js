@@ -125,8 +125,9 @@ function displayStats(filteredEvents) {
     document.getElementById("average").innerHTML = average.toLocaleString(
         undefined, {
             minimumFractionDigits: 0,
-            maxFractionDigits: 0
-        });
+            maximumFractionDigits: 0,
+    });
+
     document.getElementById("least").innerHTML = least.toLocaleString();
 }
 
@@ -140,7 +141,7 @@ function getEvents(ddElement) {
     if (cityName != "All") {
         //filter the array using filter array method
         filteredEvents = curEvents.filter(function (item) {
-            if (condition.city == cityName) {
+            if (item.city == cityName) {
                 return item;
             }
         })
@@ -188,7 +189,7 @@ function saveData() {
 
     curEvents.push(newEvent);
 
-    localStorage.setrItem("eventData", JSON.stringify(curEvents));
+    localStorage.setItem("eventData", JSON.stringify(curEvents));
 
     buildDropDown();
     displayData();
